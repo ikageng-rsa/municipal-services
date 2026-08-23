@@ -1,0 +1,22 @@
+## Visual Studio / .NET build artifacts
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+## Windows / OS files
+Thumbs.db
+desktop.ini
+
+## NuGet
+packages/
+*.nupkg
+
+## ReSharper / Rider
+_ReSharper*/
+*.DotSettings.user
