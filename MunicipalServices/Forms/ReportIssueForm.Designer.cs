@@ -25,6 +25,7 @@ namespace MunicipalServices.Forms
         private System.Windows.Forms.Button attachButton;
         private System.Windows.Forms.ListBox attachmentsListBox;
         private System.Windows.Forms.OpenFileDialog attachmentDialog;
+        private System.Windows.Forms.Button submitButton;
 
         private void InitializeComponent()
         {
@@ -40,6 +41,7 @@ namespace MunicipalServices.Forms
             this.attachButton = new System.Windows.Forms.Button();
             this.attachmentsListBox = new System.Windows.Forms.ListBox();
             this.attachmentDialog = new System.Windows.Forms.OpenFileDialog();
+            this.submitButton = new System.Windows.Forms.Button();
             this.headerPanel.SuspendLayout();
             this.SuspendLayout();
             //
@@ -70,9 +72,9 @@ namespace MunicipalServices.Forms
             this.backButton.FlatAppearance.BorderSize = 0;
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backButton.Font = MunicipalServices.UiTheme.BodyFont;
-            this.backButton.Location = new System.Drawing.Point(20, 500);
+            this.backButton.Location = new System.Drawing.Point(380, 500);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(160, 35);
+            this.backButton.Size = new System.Drawing.Size(150, 35);
             this.backButton.TabIndex = 1;
             this.backButton.Text = "Back to Main Menu";
             this.backButton.UseVisualStyleBackColor = false;
@@ -175,12 +177,28 @@ namespace MunicipalServices.Forms
             this.attachmentDialog.Multiselect = true;
             this.attachmentDialog.Title = "Attach media or documents for this issue";
             //
+            // submitButton
+            //
+            this.submitButton.BackColor = MunicipalServices.UiTheme.Accent;
+            this.submitButton.FlatAppearance.BorderSize = 0;
+            this.submitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.submitButton.Font = MunicipalServices.UiTheme.HeadingFont;
+            this.submitButton.ForeColor = MunicipalServices.UiTheme.TextLight;
+            this.submitButton.Location = new System.Drawing.Point(30, 500);
+            this.submitButton.Name = "submitButton";
+            this.submitButton.Size = new System.Drawing.Size(150, 35);
+            this.submitButton.TabIndex = 10;
+            this.submitButton.Text = "Submit";
+            this.submitButton.UseVisualStyleBackColor = false;
+            this.submitButton.Click += new System.EventHandler(this.SubmitButton_Click);
+            //
             // ReportIssueForm
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = MunicipalServices.UiTheme.Background;
             this.ClientSize = new System.Drawing.Size(560, 560);
+            this.Controls.Add(this.submitButton);
             this.Controls.Add(this.attachmentsListBox);
             this.Controls.Add(this.attachButton);
             this.Controls.Add(this.descriptionRichTextBox);
