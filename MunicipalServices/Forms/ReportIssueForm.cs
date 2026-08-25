@@ -12,6 +12,38 @@ namespace MunicipalServices.Forms
         public ReportIssueForm()
         {
             InitializeComponent();
+            UpdateEngagementProgress();
+        }
+
+        private void FormField_Changed(object sender, EventArgs e)
+        {
+            UpdateEngagementProgress();
+        }
+
+        private void UpdateEngagementProgress()
+        {
+            var fieldsFilled = 0;
+            if (!string.IsNullOrWhiteSpace(locationTextBox.Text)) fieldsFilled++;
+            if (categoryComboBox.SelectedIndex != -1) fieldsFilled++;
+            if (!string.IsNullOrWhiteSpace(descriptionRichTextBox.Text)) fieldsFilled++;
+
+            engagementProgressBar.Value = fieldsFilled * 100 / 3;
+
+            switch (fieldsFilled)
+            {
+                case 0:
+                    engagementLabel.Text = "Let's get started! Every report helps your community.";
+                    break;
+                case 1:
+                    engagementLabel.Text = "Great start! Keep going, you're a third of the way there.";
+                    break;
+                case 2:
+                    engagementLabel.Text = "Almost there! Just one more detail to go.";
+                    break;
+                default:
+                    engagementLabel.Text = "All set! Click Submit to send your report.";
+                    break;
+            }
         }
 
         private void AttachButton_Click(object sender, EventArgs e)
@@ -61,8 +93,10 @@ namespace MunicipalServices.Forms
             };
             IssueRepository.Add(issue);
 
-            MessageBox.Show(this, "Thank you! Your issue has been reported successfully.", "Report submitted",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(this,
+                $"Thank you! Your issue has been reported successfully.{Environment.NewLine}{Environment.NewLine}" +
+                $"{IssueRepository.Issues.Count} issue(s) reported by your community so far. Every report helps!",
+                "Report submitted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             ClearForm();
         }
@@ -74,6 +108,7 @@ namespace MunicipalServices.Forms
             descriptionRichTextBox.Clear();
             attachmentsListBox.Items.Clear();
             _attachmentPaths.Clear();
+            UpdateEngagementProgress();
         }
 
         private void BackButton_Click(object sender, EventArgs e)

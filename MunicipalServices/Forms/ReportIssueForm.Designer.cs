@@ -26,6 +26,8 @@ namespace MunicipalServices.Forms
         private System.Windows.Forms.ListBox attachmentsListBox;
         private System.Windows.Forms.OpenFileDialog attachmentDialog;
         private System.Windows.Forms.Button submitButton;
+        private System.Windows.Forms.ProgressBar engagementProgressBar;
+        private System.Windows.Forms.Label engagementLabel;
 
         private void InitializeComponent()
         {
@@ -42,6 +44,8 @@ namespace MunicipalServices.Forms
             this.attachmentsListBox = new System.Windows.Forms.ListBox();
             this.attachmentDialog = new System.Windows.Forms.OpenFileDialog();
             this.submitButton = new System.Windows.Forms.Button();
+            this.engagementProgressBar = new System.Windows.Forms.ProgressBar();
+            this.engagementLabel = new System.Windows.Forms.Label();
             this.headerPanel.SuspendLayout();
             this.SuspendLayout();
             //
@@ -98,6 +102,7 @@ namespace MunicipalServices.Forms
             this.locationTextBox.Name = "locationTextBox";
             this.locationTextBox.Size = new System.Drawing.Size(500, 25);
             this.locationTextBox.TabIndex = 3;
+            this.locationTextBox.TextChanged += new System.EventHandler(this.FormField_Changed);
             //
             // categoryLabel
             //
@@ -126,6 +131,7 @@ namespace MunicipalServices.Forms
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(250, 25);
             this.categoryComboBox.TabIndex = 5;
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.FormField_Changed);
             //
             // descriptionLabel
             //
@@ -146,6 +152,7 @@ namespace MunicipalServices.Forms
             this.descriptionRichTextBox.Size = new System.Drawing.Size(500, 110);
             this.descriptionRichTextBox.TabIndex = 7;
             this.descriptionRichTextBox.Text = "";
+            this.descriptionRichTextBox.TextChanged += new System.EventHandler(this.FormField_Changed);
             //
             // attachButton
             //
@@ -192,12 +199,32 @@ namespace MunicipalServices.Forms
             this.submitButton.UseVisualStyleBackColor = false;
             this.submitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             //
+            // engagementProgressBar
+            //
+            this.engagementProgressBar.Location = new System.Drawing.Point(30, 447);
+            this.engagementProgressBar.Name = "engagementProgressBar";
+            this.engagementProgressBar.Size = new System.Drawing.Size(500, 18);
+            this.engagementProgressBar.TabIndex = 11;
+            //
+            // engagementLabel
+            //
+            this.engagementLabel.AutoSize = true;
+            this.engagementLabel.Font = MunicipalServices.UiTheme.BodyFont;
+            this.engagementLabel.ForeColor = MunicipalServices.UiTheme.PrimaryDark;
+            this.engagementLabel.Location = new System.Drawing.Point(30, 470);
+            this.engagementLabel.Name = "engagementLabel";
+            this.engagementLabel.Size = new System.Drawing.Size(300, 17);
+            this.engagementLabel.TabIndex = 12;
+            this.engagementLabel.Text = "Let's get started! Every report helps your community.";
+            //
             // ReportIssueForm
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = MunicipalServices.UiTheme.Background;
             this.ClientSize = new System.Drawing.Size(560, 560);
+            this.Controls.Add(this.engagementLabel);
+            this.Controls.Add(this.engagementProgressBar);
             this.Controls.Add(this.submitButton);
             this.Controls.Add(this.attachmentsListBox);
             this.Controls.Add(this.attachButton);
