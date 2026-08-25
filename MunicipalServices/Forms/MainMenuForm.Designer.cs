@@ -69,6 +69,7 @@ namespace MunicipalServices.Forms
             this.reportIssuesButton.BackColor = MunicipalServices.UiTheme.Accent;
             this.reportIssuesButton.FlatAppearance.BorderSize = 0;
             this.reportIssuesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.reportIssuesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
             this.reportIssuesButton.Font = MunicipalServices.UiTheme.HeadingFont;
             this.reportIssuesButton.ForeColor = MunicipalServices.UiTheme.TextLight;
             this.reportIssuesButton.Location = new System.Drawing.Point(40, 130);
@@ -84,6 +85,7 @@ namespace MunicipalServices.Forms
             this.localEventsButton.BackColor = MunicipalServices.UiTheme.Disabled;
             this.localEventsButton.Enabled = false;
             this.localEventsButton.FlatAppearance.BorderSize = 0;
+            this.localEventsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
             this.localEventsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.localEventsButton.Font = MunicipalServices.UiTheme.HeadingFont;
             this.localEventsButton.ForeColor = MunicipalServices.UiTheme.TextDark;
@@ -99,6 +101,7 @@ namespace MunicipalServices.Forms
             this.serviceStatusButton.BackColor = MunicipalServices.UiTheme.Disabled;
             this.serviceStatusButton.Enabled = false;
             this.serviceStatusButton.FlatAppearance.BorderSize = 0;
+            this.serviceStatusButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
             this.serviceStatusButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.serviceStatusButton.Font = MunicipalServices.UiTheme.HeadingFont;
             this.serviceStatusButton.ForeColor = MunicipalServices.UiTheme.TextDark;
@@ -119,8 +122,8 @@ namespace MunicipalServices.Forms
             this.Controls.Add(this.localEventsButton);
             this.Controls.Add(this.reportIssuesButton);
             this.Controls.Add(this.headerPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            this.MaximizeBox = true;
             this.MinimumSize = new System.Drawing.Size(496, 399);
             this.Name = "MainMenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

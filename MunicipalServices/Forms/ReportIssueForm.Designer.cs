@@ -72,6 +72,7 @@ namespace MunicipalServices.Forms
             //
             // backButton
             //
+            this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.backButton.BackColor = MunicipalServices.UiTheme.Disabled;
             this.backButton.FlatAppearance.BorderSize = 0;
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -97,6 +98,7 @@ namespace MunicipalServices.Forms
             //
             // locationTextBox
             //
+            this.locationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
             this.locationTextBox.Font = MunicipalServices.UiTheme.BodyFont;
             this.locationTextBox.Location = new System.Drawing.Point(30, 92);
             this.locationTextBox.Name = "locationTextBox";
@@ -146,6 +148,7 @@ namespace MunicipalServices.Forms
             //
             // descriptionRichTextBox
             //
+            this.descriptionRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionRichTextBox.Font = MunicipalServices.UiTheme.BodyFont;
             this.descriptionRichTextBox.Location = new System.Drawing.Point(30, 212);
             this.descriptionRichTextBox.Name = "descriptionRichTextBox";
@@ -156,6 +159,7 @@ namespace MunicipalServices.Forms
             //
             // attachButton
             //
+            this.attachButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.attachButton.BackColor = MunicipalServices.UiTheme.Primary;
             this.attachButton.FlatAppearance.BorderSize = 0;
             this.attachButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -171,6 +175,7 @@ namespace MunicipalServices.Forms
             //
             // attachmentsListBox
             //
+            this.attachmentsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
             this.attachmentsListBox.Font = MunicipalServices.UiTheme.BodyFont;
             this.attachmentsListBox.FormattingEnabled = true;
             this.attachmentsListBox.Location = new System.Drawing.Point(30, 368);
@@ -186,6 +191,7 @@ namespace MunicipalServices.Forms
             //
             // submitButton
             //
+            this.submitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.submitButton.BackColor = MunicipalServices.UiTheme.Accent;
             this.submitButton.FlatAppearance.BorderSize = 0;
             this.submitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -201,6 +207,7 @@ namespace MunicipalServices.Forms
             //
             // engagementProgressBar
             //
+            this.engagementProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
             this.engagementProgressBar.Location = new System.Drawing.Point(30, 447);
             this.engagementProgressBar.Name = "engagementProgressBar";
             this.engagementProgressBar.Size = new System.Drawing.Size(500, 18);
@@ -208,6 +215,7 @@ namespace MunicipalServices.Forms
             //
             // engagementLabel
             //
+            this.engagementLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.engagementLabel.AutoSize = true;
             this.engagementLabel.Font = MunicipalServices.UiTheme.BodyFont;
             this.engagementLabel.ForeColor = MunicipalServices.UiTheme.PrimaryDark;
@@ -236,8 +244,8 @@ namespace MunicipalServices.Forms
             this.Controls.Add(this.locationLabel);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.headerPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            this.MaximizeBox = true;
             this.MinimumSize = new System.Drawing.Size(576, 599);
             this.Name = "ReportIssueForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
