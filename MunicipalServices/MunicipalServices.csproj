@@ -55,8 +55,10 @@
     <Compile Include="Forms\ReportIssueForm.Designer.cs">
       <DependentUpon>ReportIssueForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\Issue.cs" />
     <Compile Include="Models\IssueRepository.cs" />
+    <Compile Include="Models\LocalEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
