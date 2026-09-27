@@ -44,6 +44,12 @@
     <Compile Include="DataStructures\PriorityQueue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="UiTheme.cs" />
+    <Compile Include="Forms\LocalEventsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LocalEventsForm.Designer.cs">
+      <DependentUpon>LocalEventsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\LocalEventsForm.resx">
+      <DependentUpon>LocalEventsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
     </EmbeddedResource>

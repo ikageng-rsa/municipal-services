@@ -12,10 +12,20 @@ namespace MunicipalServices.Forms
 
         private void ReportIssuesButton_Click(object sender, EventArgs e)
         {
-            using (var reportIssueForm = new ReportIssueForm())
+            ShowChildForm(new ReportIssueForm());
+        }
+
+        private void LocalEventsButton_Click(object sender, EventArgs e)
+        {
+            ShowChildForm(new LocalEventsForm());
+        }
+
+        private void ShowChildForm(Form childForm)
+        {
+            using (childForm)
             {
                 this.Hide();
-                reportIssueForm.ShowDialog();
+                childForm.ShowDialog();
                 this.Show();
             }
         }

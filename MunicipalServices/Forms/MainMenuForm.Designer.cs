@@ -82,19 +82,19 @@ namespace MunicipalServices.Forms
             //
             // localEventsButton
             //
-            this.localEventsButton.BackColor = MunicipalServices.UiTheme.Disabled;
-            this.localEventsButton.Enabled = false;
+            this.localEventsButton.BackColor = MunicipalServices.UiTheme.Accent;
             this.localEventsButton.FlatAppearance.BorderSize = 0;
             this.localEventsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right));
             this.localEventsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.localEventsButton.Font = MunicipalServices.UiTheme.HeadingFont;
-            this.localEventsButton.ForeColor = MunicipalServices.UiTheme.TextDark;
+            this.localEventsButton.ForeColor = MunicipalServices.UiTheme.TextLight;
             this.localEventsButton.Location = new System.Drawing.Point(40, 200);
             this.localEventsButton.Name = "localEventsButton";
             this.localEventsButton.Size = new System.Drawing.Size(400, 55);
             this.localEventsButton.TabIndex = 2;
-            this.localEventsButton.Text = "Local Events && Announcements (coming soon)";
+            this.localEventsButton.Text = "Local Events && Announcements";
             this.localEventsButton.UseVisualStyleBackColor = false;
+            this.localEventsButton.Click += new System.EventHandler(this.LocalEventsButton_Click);
             //
             // serviceStatusButton
             //
