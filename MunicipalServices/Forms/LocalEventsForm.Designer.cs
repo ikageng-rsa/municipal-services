@@ -40,6 +40,7 @@ namespace MunicipalServices.Forms
         private System.Windows.Forms.ColumnHeader recommendedEventColumn;
         private System.Windows.Forms.ColumnHeader recommendedDateColumn;
         private System.Windows.Forms.ColumnHeader recommendedReasonColumn;
+        private System.Windows.Forms.Button previousEventButton;
 
         private void InitializeComponent()
         {
@@ -70,6 +71,7 @@ namespace MunicipalServices.Forms
             this.recommendedEventColumn = new System.Windows.Forms.ColumnHeader();
             this.recommendedDateColumn = new System.Windows.Forms.ColumnHeader();
             this.recommendedReasonColumn = new System.Windows.Forms.ColumnHeader();
+            this.previousEventButton = new System.Windows.Forms.Button();
             this.headerPanel.SuspendLayout();
             this.detailsGroupBox.SuspendLayout();
             this.announcementsGroupBox.SuspendLayout();
@@ -317,6 +319,22 @@ namespace MunicipalServices.Forms
             this.announcementTextBox.TabIndex = 1;
             this.announcementTextBox.Text = "";
             //
+            // previousEventButton
+            //
+            this.previousEventButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.previousEventButton.BackColor = MunicipalServices.UiTheme.Disabled;
+            this.previousEventButton.Enabled = false;
+            this.previousEventButton.FlatAppearance.BorderSize = 0;
+            this.previousEventButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.previousEventButton.Font = MunicipalServices.UiTheme.BodyFont;
+            this.previousEventButton.Location = new System.Drawing.Point(450, 388);
+            this.previousEventButton.Name = "previousEventButton";
+            this.previousEventButton.Size = new System.Drawing.Size(130, 26);
+            this.previousEventButton.TabIndex = 13;
+            this.previousEventButton.Text = "Previous event";
+            this.previousEventButton.UseVisualStyleBackColor = false;
+            this.previousEventButton.Click += new System.EventHandler(this.PreviousEventButton_Click);
+            //
             // recommendationsGroupBox
             //
             this.recommendationsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
@@ -369,6 +387,7 @@ namespace MunicipalServices.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = MunicipalServices.UiTheme.Background;
             this.ClientSize = new System.Drawing.Size(900, 620);
+            this.Controls.Add(this.previousEventButton);
             this.Controls.Add(this.recommendationsGroupBox);
             this.Controls.Add(this.announcementsGroupBox);
             this.Controls.Add(this.clearButton);

@@ -13,6 +13,9 @@ namespace MunicipalServices.Forms
         private const string AllCategories = "All categories";
         private const int MaxRecommendations = 4;
 
+        // Events opened this visit, most recent on top; popping steps back through them.
+        private readonly Stack<LocalEvent> _viewHistory = new Stack<LocalEvent>();
+
         public LocalEventsForm()
         {
             InitializeComponent();
@@ -141,8 +144,43 @@ namespace MunicipalServices.Forms
                 OpenEvent(localEvent);
         }
 
-        /// <summary>Shows an event's details and counts it as a signal of interest.</summary>
+        /// <summary>
+        /// Shows an event's details, remembers it in the view history, and counts it as a
+        /// signal of interest.
+        /// </summary>
         private void OpenEvent(LocalEvent localEvent)
+        {
+            ShowEventDetails(localEvent);
+
+            // Re-selecting the event already on top of the history adds nothing new.
+            if (_viewHistory.Count == 0 || _viewHistory.Peek().Id != localEvent.Id)
+                _viewHistory.Push(localEvent);
+            UpdatePreviousButton();
+
+            RecommendationEngine.Shared.RecordView(localEvent);
+            RefreshRecommendations();
+        }
+
+        /// <summary>Steps back to the event viewed before the current one.</summary>
+        private void PreviousEventButton_Click(object sender, EventArgs e)
+        {
+            if (_viewHistory.Count < 2)
+                return;
+
+            _viewHistory.Pop();
+            ShowEventDetails(_viewHistory.Peek());
+            UpdatePreviousButton();
+        }
+
+        private void UpdatePreviousButton()
+        {
+            var canGoBack = _viewHistory.Count > 1;
+            previousEventButton.Enabled = canGoBack;
+            previousEventButton.BackColor = canGoBack ? UiTheme.Primary : UiTheme.Disabled;
+            previousEventButton.ForeColor = canGoBack ? UiTheme.TextLight : SystemColors.GrayText;
+        }
+
+        private void ShowEventDetails(LocalEvent localEvent)
         {
             detailsTextBox.Text =
                 $"{localEvent.Title}{Environment.NewLine}{Environment.NewLine}" +
@@ -150,9 +188,6 @@ namespace MunicipalServices.Forms
                 $"Where: {localEvent.Location}{Environment.NewLine}" +
                 $"Category: {localEvent.Category}{Environment.NewLine}{Environment.NewLine}" +
                 localEvent.Description;
-
-            RecommendationEngine.Shared.RecordView(localEvent);
-            RefreshRecommendations();
         }
 
         private void RefreshRecommendations()
