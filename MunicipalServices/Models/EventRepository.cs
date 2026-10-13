@@ -86,6 +86,38 @@ namespace MunicipalServices.Models
             }
         }
 
+        /// <summary>
+        /// Finds upcoming events matching an optional category and/or an optional calendar day,
+        /// in chronological order. The most selective index is used as the starting point:
+        /// the date map for a day, the category map for a category, otherwise the full date map.
+        /// </summary>
+        public static IEnumerable<LocalEvent> Search(string category, DateTime? date)
+        {
+            var hasCategory = !string.IsNullOrWhiteSpace(category);
+            var today = DateTime.Today;
+
+            IEnumerable<LocalEvent> candidates;
+            if (date.HasValue)
+            {
+                candidates = _byDate.TryGetValue(date.Value.Date, out var dayList)
+                    ? dayList
+                    : Enumerable.Empty<LocalEvent>();
+            }
+            else if (hasCategory)
+            {
+                candidates = GetByCategory(category).Where(e => e.Date.Date >= today);
+            }
+            else
+            {
+                return GetUpcoming(today);
+            }
+
+            if (hasCategory && date.HasValue)
+                candidates = candidates.Where(e => string.Equals(e.Category, category, StringComparison.OrdinalIgnoreCase));
+
+            return candidates.OrderBy(e => e.Date);
+        }
+
         private static void SeedEvents()
         {
             var today = DateTime.Today;
