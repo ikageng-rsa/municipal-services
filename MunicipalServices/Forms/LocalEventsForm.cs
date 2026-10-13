@@ -8,9 +8,44 @@ namespace MunicipalServices.Forms
 {
     public partial class LocalEventsForm : Form
     {
+        private const string AllCategories = "All categories";
+
         public LocalEventsForm()
         {
             InitializeComponent();
+            PopulateFilters();
+            DisplayEvents(EventRepository.GetUpcoming(DateTime.Today));
+        }
+
+        private void PopulateFilters()
+        {
+            categoryComboBox.Items.Add(AllCategories);
+            foreach (var category in EventRepository.Categories)
+                categoryComboBox.Items.Add(category);
+            categoryComboBox.SelectedIndex = 0;
+
+            // Only offer dates that actually have events.
+            datePicker.MinDate = EventRepository.EventDates.First();
+            datePicker.MaxDate = EventRepository.EventDates.Last();
+        }
+
+        private void DateCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            datePicker.Enabled = dateCheckBox.Checked;
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            var category = categoryComboBox.SelectedIndex > 0 ? categoryComboBox.Text : null;
+            DateTime? date = dateCheckBox.Checked ? datePicker.Value.Date : (DateTime?)null;
+
+            DisplayEvents(EventRepository.Search(category, date));
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            categoryComboBox.SelectedIndex = 0;
+            dateCheckBox.Checked = false;
             DisplayEvents(EventRepository.GetUpcoming(DateTime.Today));
         }
 

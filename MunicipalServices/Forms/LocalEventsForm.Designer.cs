@@ -24,6 +24,12 @@ namespace MunicipalServices.Forms
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.GroupBox detailsGroupBox;
         private System.Windows.Forms.RichTextBox detailsTextBox;
+        private System.Windows.Forms.Label categoryLabel;
+        private System.Windows.Forms.ComboBox categoryComboBox;
+        private System.Windows.Forms.CheckBox dateCheckBox;
+        private System.Windows.Forms.DateTimePicker datePicker;
+        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.Button clearButton;
 
         private void InitializeComponent()
         {
@@ -38,6 +44,12 @@ namespace MunicipalServices.Forms
             this.statusLabel = new System.Windows.Forms.Label();
             this.detailsGroupBox = new System.Windows.Forms.GroupBox();
             this.detailsTextBox = new System.Windows.Forms.RichTextBox();
+            this.categoryLabel = new System.Windows.Forms.Label();
+            this.categoryComboBox = new System.Windows.Forms.ComboBox();
+            this.dateCheckBox = new System.Windows.Forms.CheckBox();
+            this.datePicker = new System.Windows.Forms.DateTimePicker();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.clearButton = new System.Windows.Forms.Button();
             this.headerPanel.SuspendLayout();
             this.detailsGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -77,6 +89,80 @@ namespace MunicipalServices.Forms
             this.backButton.Text = "Back to Main Menu";
             this.backButton.UseVisualStyleBackColor = false;
             this.backButton.Click += new System.EventHandler(this.BackButton_Click);
+            //
+            // categoryLabel
+            //
+            this.categoryLabel.AutoSize = true;
+            this.categoryLabel.Font = MunicipalServices.UiTheme.BodyFont;
+            this.categoryLabel.ForeColor = MunicipalServices.UiTheme.TextDark;
+            this.categoryLabel.Location = new System.Drawing.Point(20, 77);
+            this.categoryLabel.Name = "categoryLabel";
+            this.categoryLabel.Size = new System.Drawing.Size(60, 17);
+            this.categoryLabel.TabIndex = 5;
+            this.categoryLabel.Text = "Category";
+            //
+            // categoryComboBox
+            //
+            this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.categoryComboBox.Font = MunicipalServices.UiTheme.BodyFont;
+            this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Location = new System.Drawing.Point(90, 74);
+            this.categoryComboBox.Name = "categoryComboBox";
+            this.categoryComboBox.Size = new System.Drawing.Size(180, 25);
+            this.categoryComboBox.TabIndex = 6;
+            //
+            // dateCheckBox
+            //
+            this.dateCheckBox.AutoSize = true;
+            this.dateCheckBox.Font = MunicipalServices.UiTheme.BodyFont;
+            this.dateCheckBox.ForeColor = MunicipalServices.UiTheme.TextDark;
+            this.dateCheckBox.Location = new System.Drawing.Point(290, 76);
+            this.dateCheckBox.Name = "dateCheckBox";
+            this.dateCheckBox.Size = new System.Drawing.Size(100, 21);
+            this.dateCheckBox.TabIndex = 7;
+            this.dateCheckBox.Text = "On this date";
+            this.dateCheckBox.UseVisualStyleBackColor = true;
+            this.dateCheckBox.CheckedChanged += new System.EventHandler(this.DateCheckBox_CheckedChanged);
+            //
+            // datePicker
+            //
+            this.datePicker.CustomFormat = "ddd, dd MMM yyyy";
+            this.datePicker.Enabled = false;
+            this.datePicker.Font = MunicipalServices.UiTheme.BodyFont;
+            this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.datePicker.Location = new System.Drawing.Point(400, 74);
+            this.datePicker.Name = "datePicker";
+            this.datePicker.Size = new System.Drawing.Size(160, 25);
+            this.datePicker.TabIndex = 8;
+            //
+            // searchButton
+            //
+            this.searchButton.BackColor = MunicipalServices.UiTheme.Accent;
+            this.searchButton.FlatAppearance.BorderSize = 0;
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.Font = MunicipalServices.UiTheme.BodyFont;
+            this.searchButton.ForeColor = MunicipalServices.UiTheme.TextLight;
+            this.searchButton.Location = new System.Drawing.Point(580, 72);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(90, 30);
+            this.searchButton.TabIndex = 9;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = false;
+            this.searchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            //
+            // clearButton
+            //
+            this.clearButton.BackColor = MunicipalServices.UiTheme.Disabled;
+            this.clearButton.FlatAppearance.BorderSize = 0;
+            this.clearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearButton.Font = MunicipalServices.UiTheme.BodyFont;
+            this.clearButton.Location = new System.Drawing.Point(680, 72);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(90, 30);
+            this.clearButton.TabIndex = 10;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = false;
+            this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
             //
             // eventsListView
             //
@@ -161,6 +247,12 @@ namespace MunicipalServices.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = MunicipalServices.UiTheme.Background;
             this.ClientSize = new System.Drawing.Size(900, 620);
+            this.Controls.Add(this.clearButton);
+            this.Controls.Add(this.searchButton);
+            this.Controls.Add(this.datePicker);
+            this.Controls.Add(this.dateCheckBox);
+            this.Controls.Add(this.categoryComboBox);
+            this.Controls.Add(this.categoryLabel);
             this.Controls.Add(this.detailsGroupBox);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.eventsListView);
