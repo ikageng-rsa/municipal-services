@@ -63,6 +63,7 @@
       <DependentUpon>ReportIssueForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Announcement.cs" />
+    <Compile Include="Models\AnnouncementRepository.cs" />
     <Compile Include="Models\EventRepository.cs" />
     <Compile Include="Models\Issue.cs" />
     <Compile Include="Models\IssueRepository.cs" />
