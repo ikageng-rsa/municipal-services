@@ -35,6 +35,11 @@ namespace MunicipalServices.Forms
         private System.Windows.Forms.ColumnHeader urgencyColumn;
         private System.Windows.Forms.ColumnHeader noticeColumn;
         private System.Windows.Forms.RichTextBox announcementTextBox;
+        private System.Windows.Forms.GroupBox recommendationsGroupBox;
+        private System.Windows.Forms.ListView recommendationsListView;
+        private System.Windows.Forms.ColumnHeader recommendedEventColumn;
+        private System.Windows.Forms.ColumnHeader recommendedDateColumn;
+        private System.Windows.Forms.ColumnHeader recommendedReasonColumn;
 
         private void InitializeComponent()
         {
@@ -60,9 +65,15 @@ namespace MunicipalServices.Forms
             this.urgencyColumn = new System.Windows.Forms.ColumnHeader();
             this.noticeColumn = new System.Windows.Forms.ColumnHeader();
             this.announcementTextBox = new System.Windows.Forms.RichTextBox();
+            this.recommendationsGroupBox = new System.Windows.Forms.GroupBox();
+            this.recommendationsListView = new System.Windows.Forms.ListView();
+            this.recommendedEventColumn = new System.Windows.Forms.ColumnHeader();
+            this.recommendedDateColumn = new System.Windows.Forms.ColumnHeader();
+            this.recommendedReasonColumn = new System.Windows.Forms.ColumnHeader();
             this.headerPanel.SuspendLayout();
             this.detailsGroupBox.SuspendLayout();
             this.announcementsGroupBox.SuspendLayout();
+            this.recommendationsGroupBox.SuspendLayout();
             this.SuspendLayout();
             //
             // headerPanel
@@ -189,7 +200,7 @@ namespace MunicipalServices.Forms
             this.eventsListView.Location = new System.Drawing.Point(20, 115);
             this.eventsListView.MultiSelect = false;
             this.eventsListView.Name = "eventsListView";
-            this.eventsListView.Size = new System.Drawing.Size(560, 370);
+            this.eventsListView.Size = new System.Drawing.Size(560, 270);
             this.eventsListView.TabIndex = 2;
             this.eventsListView.UseCompatibleStateImageBehavior = false;
             this.eventsListView.View = System.Windows.Forms.View.Details;
@@ -221,7 +232,7 @@ namespace MunicipalServices.Forms
             this.statusLabel.AutoSize = true;
             this.statusLabel.Font = MunicipalServices.UiTheme.BodyFont;
             this.statusLabel.ForeColor = MunicipalServices.UiTheme.PrimaryDark;
-            this.statusLabel.Location = new System.Drawing.Point(20, 492);
+            this.statusLabel.Location = new System.Drawing.Point(20, 392);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(120, 17);
             this.statusLabel.TabIndex = 3;
@@ -306,12 +317,59 @@ namespace MunicipalServices.Forms
             this.announcementTextBox.TabIndex = 1;
             this.announcementTextBox.Text = "";
             //
+            // recommendationsGroupBox
+            //
+            this.recommendationsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.recommendationsGroupBox.Controls.Add(this.recommendationsListView);
+            this.recommendationsGroupBox.Font = MunicipalServices.UiTheme.BodyFont;
+            this.recommendationsGroupBox.ForeColor = MunicipalServices.UiTheme.TextDark;
+            this.recommendationsGroupBox.Location = new System.Drawing.Point(20, 420);
+            this.recommendationsGroupBox.Name = "recommendationsGroupBox";
+            this.recommendationsGroupBox.Size = new System.Drawing.Size(560, 135);
+            this.recommendationsGroupBox.TabIndex = 12;
+            this.recommendationsGroupBox.TabStop = false;
+            this.recommendationsGroupBox.Text = "Recommended for you";
+            //
+            // recommendationsListView
+            //
+            this.recommendationsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.recommendedEventColumn,
+            this.recommendedDateColumn,
+            this.recommendedReasonColumn});
+            this.recommendationsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.recommendationsListView.FullRowSelect = true;
+            this.recommendationsListView.HideSelection = false;
+            this.recommendationsListView.Location = new System.Drawing.Point(3, 20);
+            this.recommendationsListView.MultiSelect = false;
+            this.recommendationsListView.Name = "recommendationsListView";
+            this.recommendationsListView.Size = new System.Drawing.Size(554, 112);
+            this.recommendationsListView.TabIndex = 0;
+            this.recommendationsListView.UseCompatibleStateImageBehavior = false;
+            this.recommendationsListView.View = System.Windows.Forms.View.Details;
+            this.recommendationsListView.SelectedIndexChanged += new System.EventHandler(this.RecommendationsListView_SelectedIndexChanged);
+            //
+            // recommendedEventColumn
+            //
+            this.recommendedEventColumn.Text = "Event";
+            this.recommendedEventColumn.Width = 190;
+            //
+            // recommendedDateColumn
+            //
+            this.recommendedDateColumn.Text = "Date";
+            this.recommendedDateColumn.Width = 120;
+            //
+            // recommendedReasonColumn
+            //
+            this.recommendedReasonColumn.Text = "Why";
+            this.recommendedReasonColumn.Width = 240;
+            //
             // LocalEventsForm
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = MunicipalServices.UiTheme.Background;
             this.ClientSize = new System.Drawing.Size(900, 620);
+            this.Controls.Add(this.recommendationsGroupBox);
             this.Controls.Add(this.announcementsGroupBox);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.searchButton);
@@ -334,6 +392,7 @@ namespace MunicipalServices.Forms
             this.headerPanel.PerformLayout();
             this.detailsGroupBox.ResumeLayout(false);
             this.announcementsGroupBox.ResumeLayout(false);
+            this.recommendationsGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
         }

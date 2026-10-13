@@ -4,12 +4,14 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using MunicipalServices.Models;
+using MunicipalServices.Services;
 
 namespace MunicipalServices.Forms
 {
     public partial class LocalEventsForm : Form
     {
         private const string AllCategories = "All categories";
+        private const int MaxRecommendations = 4;
 
         public LocalEventsForm()
         {
@@ -17,6 +19,7 @@ namespace MunicipalServices.Forms
             PopulateFilters();
             DisplayEvents(EventRepository.GetUpcoming(DateTime.Today));
             DisplayAnnouncements();
+            RefreshRecommendations();
         }
 
         private void DisplayAnnouncements()
@@ -83,6 +86,9 @@ namespace MunicipalServices.Forms
             DateTime? date = dateCheckBox.Checked ? datePicker.Value.Date : (DateTime?)null;
 
             DisplayEvents(EventRepository.Search(category, date));
+
+            RecommendationEngine.Shared.RecordSearch(category);
+            RefreshRecommendations();
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -122,13 +128,61 @@ namespace MunicipalServices.Forms
             if (eventsListView.SelectedItems.Count == 0)
                 return;
 
-            var localEvent = (LocalEvent)eventsListView.SelectedItems[0].Tag;
+            OpenEvent((LocalEvent)eventsListView.SelectedItems[0].Tag);
+        }
+
+        private void RecommendationsListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (recommendationsListView.SelectedItems.Count == 0)
+                return;
+
+            // The placeholder row (no history yet) has no event attached.
+            if (recommendationsListView.SelectedItems[0].Tag is LocalEvent localEvent)
+                OpenEvent(localEvent);
+        }
+
+        /// <summary>Shows an event's details and counts it as a signal of interest.</summary>
+        private void OpenEvent(LocalEvent localEvent)
+        {
             detailsTextBox.Text =
                 $"{localEvent.Title}{Environment.NewLine}{Environment.NewLine}" +
                 $"When: {localEvent.Date:dddd, dd MMMM yyyy 'at' HH:mm}{Environment.NewLine}" +
                 $"Where: {localEvent.Location}{Environment.NewLine}" +
                 $"Category: {localEvent.Category}{Environment.NewLine}{Environment.NewLine}" +
                 localEvent.Description;
+
+            RecommendationEngine.Shared.RecordView(localEvent);
+            RefreshRecommendations();
+        }
+
+        private void RefreshRecommendations()
+        {
+            var recommendations = RecommendationEngine.Shared.GetRecommendations(
+                EventRepository.GetUpcoming(DateTime.Today), DateTime.Today, MaxRecommendations);
+
+            recommendationsListView.BeginUpdate();
+            recommendationsListView.Items.Clear();
+
+            if (recommendations.Count == 0)
+            {
+                var hint = new ListViewItem(RecommendationEngine.Shared.HasHistory
+                    ? "No further suggestions right now."
+                    : "Search or open events and we'll suggest ones you might like.")
+                {
+                    ForeColor = SystemColors.GrayText
+                };
+                recommendationsListView.Items.Add(hint);
+            }
+
+            foreach (var recommendation in recommendations)
+            {
+                var item = new ListViewItem(recommendation.Event.Title) { Tag = recommendation.Event };
+                item.SubItems.Add(recommendation.Event.Date.ToString("ddd, dd MMM HH:mm"));
+                item.SubItems.Add(recommendation.Reason);
+                recommendationsListView.Items.Add(item);
+            }
+
+            recommendationsListView.EndUpdate();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
