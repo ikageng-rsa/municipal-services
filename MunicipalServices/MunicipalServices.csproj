@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DataStructures\PriorityQueue.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Services\RecommendationEngine.cs" />
     <Compile Include="UiTheme.cs" />
     <Compile Include="Forms\LocalEventsForm.cs">
       <SubType>Form</SubType>
