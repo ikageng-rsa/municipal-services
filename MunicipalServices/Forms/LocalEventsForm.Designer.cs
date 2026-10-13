@@ -30,6 +30,11 @@ namespace MunicipalServices.Forms
         private System.Windows.Forms.DateTimePicker datePicker;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.GroupBox announcementsGroupBox;
+        private System.Windows.Forms.ListView announcementsListView;
+        private System.Windows.Forms.ColumnHeader urgencyColumn;
+        private System.Windows.Forms.ColumnHeader noticeColumn;
+        private System.Windows.Forms.RichTextBox announcementTextBox;
 
         private void InitializeComponent()
         {
@@ -50,8 +55,14 @@ namespace MunicipalServices.Forms
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.searchButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
+            this.announcementsGroupBox = new System.Windows.Forms.GroupBox();
+            this.announcementsListView = new System.Windows.Forms.ListView();
+            this.urgencyColumn = new System.Windows.Forms.ColumnHeader();
+            this.noticeColumn = new System.Windows.Forms.ColumnHeader();
+            this.announcementTextBox = new System.Windows.Forms.RichTextBox();
             this.headerPanel.SuspendLayout();
             this.detailsGroupBox.SuspendLayout();
+            this.announcementsGroupBox.SuspendLayout();
             this.SuspendLayout();
             //
             // headerPanel
@@ -241,12 +252,67 @@ namespace MunicipalServices.Forms
             this.detailsTextBox.TabIndex = 0;
             this.detailsTextBox.Text = "";
             //
+            // announcementsGroupBox
+            //
+            this.announcementsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Right))));
+            this.announcementsGroupBox.Controls.Add(this.announcementTextBox);
+            this.announcementsGroupBox.Controls.Add(this.announcementsListView);
+            this.announcementsGroupBox.Font = MunicipalServices.UiTheme.BodyFont;
+            this.announcementsGroupBox.ForeColor = MunicipalServices.UiTheme.TextDark;
+            this.announcementsGroupBox.Location = new System.Drawing.Point(600, 310);
+            this.announcementsGroupBox.Name = "announcementsGroupBox";
+            this.announcementsGroupBox.Size = new System.Drawing.Size(280, 245);
+            this.announcementsGroupBox.TabIndex = 11;
+            this.announcementsGroupBox.TabStop = false;
+            this.announcementsGroupBox.Text = "Announcements (most urgent first)";
+            //
+            // announcementsListView
+            //
+            this.announcementsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.announcementsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.urgencyColumn,
+            this.noticeColumn});
+            this.announcementsListView.FullRowSelect = true;
+            this.announcementsListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.announcementsListView.HideSelection = false;
+            this.announcementsListView.Location = new System.Drawing.Point(8, 22);
+            this.announcementsListView.MultiSelect = false;
+            this.announcementsListView.Name = "announcementsListView";
+            this.announcementsListView.Size = new System.Drawing.Size(264, 125);
+            this.announcementsListView.TabIndex = 0;
+            this.announcementsListView.UseCompatibleStateImageBehavior = false;
+            this.announcementsListView.View = System.Windows.Forms.View.Details;
+            this.announcementsListView.SelectedIndexChanged += new System.EventHandler(this.AnnouncementsListView_SelectedIndexChanged);
+            //
+            // urgencyColumn
+            //
+            this.urgencyColumn.Text = "Urgency";
+            this.urgencyColumn.Width = 75;
+            //
+            // noticeColumn
+            //
+            this.noticeColumn.Text = "Notice";
+            this.noticeColumn.Width = 185;
+            //
+            // announcementTextBox
+            //
+            this.announcementTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.announcementTextBox.BackColor = MunicipalServices.UiTheme.Background;
+            this.announcementTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.announcementTextBox.Location = new System.Drawing.Point(8, 153);
+            this.announcementTextBox.Name = "announcementTextBox";
+            this.announcementTextBox.ReadOnly = true;
+            this.announcementTextBox.Size = new System.Drawing.Size(264, 86);
+            this.announcementTextBox.TabIndex = 1;
+            this.announcementTextBox.Text = "";
+            //
             // LocalEventsForm
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = MunicipalServices.UiTheme.Background;
             this.ClientSize = new System.Drawing.Size(900, 620);
+            this.Controls.Add(this.announcementsGroupBox);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.datePicker);
@@ -267,6 +333,7 @@ namespace MunicipalServices.Forms
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
             this.detailsGroupBox.ResumeLayout(false);
+            this.announcementsGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
         }

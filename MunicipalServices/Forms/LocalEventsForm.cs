@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using MunicipalServices.Models;
@@ -15,6 +16,48 @@ namespace MunicipalServices.Forms
             InitializeComponent();
             PopulateFilters();
             DisplayEvents(EventRepository.GetUpcoming(DateTime.Today));
+            DisplayAnnouncements();
+        }
+
+        private void DisplayAnnouncements()
+        {
+            announcementsListView.BeginUpdate();
+            announcementsListView.Items.Clear();
+            foreach (var announcement in AnnouncementRepository.GetByPriority())
+            {
+                var item = new ListViewItem(announcement.Urgency.ToString().ToUpper())
+                {
+                    Tag = announcement,
+                    ForeColor = UrgencyColor(announcement.Urgency)
+                };
+                item.SubItems.Add(announcement.Title);
+                announcementsListView.Items.Add(item);
+            }
+            announcementsListView.EndUpdate();
+
+            announcementTextBox.Text = "Select an announcement to read it.";
+        }
+
+        private static Color UrgencyColor(AnnouncementUrgency urgency)
+        {
+            switch (urgency)
+            {
+                case AnnouncementUrgency.Urgent: return Color.Firebrick;
+                case AnnouncementUrgency.Important: return Color.DarkOrange;
+                default: return UiTheme.PrimaryDark;
+            }
+        }
+
+        private void AnnouncementsListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (announcementsListView.SelectedItems.Count == 0)
+                return;
+
+            var announcement = (Announcement)announcementsListView.SelectedItems[0].Tag;
+            announcementTextBox.Text =
+                $"{announcement.Title}{Environment.NewLine}" +
+                $"Posted {announcement.PostedAt:dd MMM yyyy HH:mm}{Environment.NewLine}{Environment.NewLine}" +
+                announcement.Message;
         }
 
         private void PopulateFilters()
